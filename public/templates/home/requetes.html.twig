@@ -1,0 +1,35 @@
+{# templates/home/requetes.html.twig #}
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Affichage du contenu des requetes SQL!{% endblock %}
+
+{% block body %}
+
+<?php
+// Inclure le fichier contenant la classe
+include 'my_database.php';
+
+// Instancier l'objet
+$bdd = new my_database();
+
+// Récupérer les requêtes SQL
+$requetes = $bdd->requeteSql();
+    ?>
+
+
+<div class="example-wrapper">
+    <h1>Affichage du contenu des requetes ! ✅</h1>
+
+    <p>Cette page gère toutes les requetes SQL.</p>
+
+    <ul>
+        <?php foreach ($requetes as $requetes): ?>
+        <li><?= htmlspecialchars($requetes); ?></li>
+        <?php endforeach; ?>
+    </ul>
+
+</div>
+
+{% endblock %}
+
